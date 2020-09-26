@@ -61,14 +61,6 @@ jobs:
       - name: Darwin amd64
         run: GOOS=darwin GOARCH=amd64 go build -tags release -tags netgo -ldflags "-w -s" -gcflags "-l=4" -o output/miraiOK_darwin-amd64 .
 
-      - name: UPX
-        run: 'tools/upx output/*'
-
-      - name: Upload exes
-        env:
-          OD_TOKEN: ${{ secrets.OD_TOKEN }}
-        run: 'tools/uploader_linux output/*'
-
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v2
         with:
